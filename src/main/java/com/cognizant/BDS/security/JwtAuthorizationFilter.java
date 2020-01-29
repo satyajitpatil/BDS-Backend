@@ -59,7 +59,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 				String user = jws.getBody().getSubject();
 				LOGGER.debug(user);
 				if (user != null) {
-					return new UsernamePasswordAuthenticationToken(user, null, (Collection<? extends GrantedAuthority>) new ArrayList<Object>());
+					return new UsernamePasswordAuthenticationToken(user, null, (Collection<? extends GrantedAuthority>) new ArrayList<GrantedAuthority>());
 				}
 			} catch (JwtException ex) {
 				return null;

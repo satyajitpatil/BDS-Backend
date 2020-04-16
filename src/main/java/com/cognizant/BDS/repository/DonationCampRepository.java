@@ -44,7 +44,8 @@ public interface DonationCampRepository extends JpaRepository<DonationCamp, Long
       + "camp_date," 
       + "venue,"
       + "start_time," 
-      + "end_time " 
+      + "end_time,"
+      + "city " 
       + "from donation_camp " 
       + "where camp_id = ?;", nativeQuery = true)
   public DonationCamp getDonationCampById(int id);
@@ -58,10 +59,16 @@ public interface DonationCampRepository extends JpaRepository<DonationCamp, Long
       + "camp_date,"
       + "venue,"
       + "start_time,"
-      + "end_time)"
-      + "values(?,?,?,?,?,?,?);", nativeQuery = true)
-  public void addDonationCamp(long bloodBankId, String bloodBankName, String campName, LocalDate campDate,String venue,LocalTime startTime,LocalTime endTime);
+      + "end_time,"
+      + "city)"
+      + "values(?,?,?,?,?,?,?,?);", nativeQuery = true)
+  public void addDonationCamp(long bloodBankId, String bloodBankName, String campName, LocalDate campDate,String venue,LocalTime startTime,LocalTime endTime,String city);
   
   @Query(value = "select d.camp_id,d.blood_bank_id,d.blood_bank_name,d.camp_name,d.camp_date,d.venue,d.start_time,d.end_time,d.city from donation_camp d, register_donor_to_camps r where d.camp_id = r.camp_id and r.donor_id=?;", nativeQuery = true)
   public List<DonationCamp> getMyRegisteredDonationCamp(int donorId);
+  
+  @Query(value = "select camp_id,blood_bank_id,blood_bank_name,camp_name,camp_date,venue,start_time,end_time,city from donation_camp where blood_bank_id = ?", nativeQuery = true)
+  public List<DonationCamp> getDonationCampsOfBloodBank(int bloodBankId);
+  
+  
 }

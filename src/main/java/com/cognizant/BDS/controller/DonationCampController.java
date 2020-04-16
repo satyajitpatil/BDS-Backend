@@ -47,4 +47,9 @@ public class DonationCampController {
   public ResponseEntity<List<DonationCamp>> getMyRegisteredDonationCamp(@PathVariable("id") int id) {
     return new ResponseEntity<List<DonationCamp>>(donationCampService.getMyRegisteredDonationCamp(id),HttpStatus.OK);
   }
+  
+  @GetMapping(value = "/donation-camp/blood-bank/{id}")
+  public ResponseEntity<List<DonationCamp>> getDonationCampsOfBloodBank(@PathVariable("id") int id) {
+    return new ResponseEntity<List<DonationCamp>>(donationCampService.getDonationCampsOfBloodBank(id),HttpStatus.OK);
+  }
 }

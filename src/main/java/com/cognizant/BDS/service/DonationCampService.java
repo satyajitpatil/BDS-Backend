@@ -39,10 +39,14 @@ public class DonationCampService {
 	}
 	
 	public void addDonationCamp(DonationCamp donationCamp){
-	  donationCampRepository.addDonationCamp(donationCamp.getBloodBankId(), donationCamp.getOrganiserName(), donationCamp.getCampName(), donationCamp.getDate(), donationCamp.getLocation(), donationCamp.getStartTime(), donationCamp.getEndTime());
+	  donationCampRepository.addDonationCamp(donationCamp.getBloodBankId(), donationCamp.getOrganiserName(), donationCamp.getCampName(), donationCamp.getDate(), donationCamp.getLocation(), donationCamp.getStartTime(), donationCamp.getEndTime(),donationCamp.getCity());
 	}
 	
 	public List<DonationCamp> getMyRegisteredDonationCamp(int donorId) {
 	  return donationCampRepository.getMyRegisteredDonationCamp(donorId);
+	}
+	
+	public List<DonationCamp> getDonationCampsOfBloodBank(int bloodBankId){
+	  return donationCampRepository.getDonationCampsOfBloodBank(bloodBankId);
 	}
 }

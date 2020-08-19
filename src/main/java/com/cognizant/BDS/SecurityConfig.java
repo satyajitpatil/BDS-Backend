@@ -1,4 +1,4 @@
-package com.cognizant.BDS;
+ package com.cognizant.BDS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		protected void configure(HttpSecurity httpSecurity) throws Exception {
 			httpSecurity.cors();
 			httpSecurity.csrf().disable().httpBasic().and().authorizeRequests()
-					.antMatchers("/authenticate").permitAll().anyRequest()
+					.antMatchers("/authenticate","/").permitAll().anyRequest()
 					.authenticated().and()
 					.addFilter(new JwtAuthorizationFilter(authenticationManager()));
 		}
